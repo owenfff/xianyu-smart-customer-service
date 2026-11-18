@@ -1,6 +1,6 @@
 # 闲鱼智能客服
 
-基于开源项目 [xianyu-auto-reply-fix](https://github.com/GuDong2003/xianyu-auto-reply-fix) 的客服管理系统，支持多账号、AI 回复、人工接管和商品管理。
+客服管理系统，支持多账号、AI 回复、人工接管和商品管理。
 
 ## 运行
 
