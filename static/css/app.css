@@ -1,0 +1,901 @@
+@import url('variables.css');
+@import url('layout.css');
+@import url('dashboard.css?v=20260831-theme');
+@import url('logs.css');
+@import url('keywords.css');
+@import url('accounts.css');
+@import url('items.css');
+@import url('notifications.css');
+@import url('components.css');
+@import url('admin.css');
+
+/* 深色模式：侧边栏不能继续使用紫色主题主色，要与深色客服工作区保持同一组深蓝层级。 */
+[data-theme="dark"] .sidebar {
+  background: linear-gradient(180deg, #33445a 0%, #25364c 52%, #1b2a3e 100%);
+  color: #eef4fb;
+  box-shadow: 2px 0 14px rgba(4, 10, 20, 0.38);
+}
+
+[data-theme="dark"] .sidebar-header,
+[data-theme="dark"] .sidebar-footer,
+[data-theme="dark"] .sidebar .nav-divider {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .sidebar .nav-link {
+  color: rgba(238, 244, 251, 0.78);
+}
+
+[data-theme="dark"] .sidebar .nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: rgba(255, 255, 255, 0.48);
+}
+
+[data-theme="dark"] .sidebar .nav-link.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.17);
+  border-left-color: #ffffff;
+}
+
+[data-theme="dark"] .sidebar .sidebar-collapse-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(238, 244, 251, 0.82);
+}
+
+[data-theme="dark"] .sidebar .sidebar-collapse-btn:hover,
+[data-theme="dark"] .sidebar .dark-mode-toggle:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+/* 第一阶段先隐藏高级管理配置，后续需要时可恢复入口 */
+.phase-one-hidden {
+  display: none !important;
+}
+
+/* 第一阶段只展示核心功能和人工提醒配置，其余高级模块保留代码，暂不露出入口。 */
+#item-publish-section,
+#items-reply-section,
+#orders-section,
+#item-search-section,
+#message-filters-section,
+#blacklist-section,
+#system-settings-section,
+#about-section {
+  display: none !important;
+}
+
+/* 账号页第一阶段只保留账号状态、AI 状态和 AI 配置入口。 */
+#cookieTable .phase-one-column {
+  display: none !important;
+}
+
+.keyword-reply-card {
+  margin-top: 1rem;
+}
+
+.keyword-reply-form {
+  padding: 1rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 10px;
+  background: var(--surface-muted, #f8fafc);
+}
+
+.keyword-reply-list {
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.rag-knowledge-card {
+  margin-top: 1rem;
+}
+
+.rag-quick-panel,
+.rag-availability-panel {
+  border: 1px solid #d9e6f2;
+  border-radius: 14px;
+  padding: 16px;
+  background: #f7fbff;
+}
+
+.rag-quick-preview {
+  border-top: 1px solid #d9e6f2;
+  padding-top: 14px;
+}
+
+.rag-availability-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.rag-availability-chip {
+  display: inline-flex;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: #fff3cd;
+  color: #735c0f;
+  border: 1px solid #ffe69c;
+}
+
+.rag-availability-chip.is-closed {
+  background: #fff1f2;
+  color: #a61b29;
+  border-color: #fecdd3;
+}
+
+.rag-revision-list {
+  border-top: 1px solid #d9e6f2;
+  max-height: 260px;
+  overflow: auto;
+}
+
+.rag-revision-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #e8eef4;
+}
+
+.rag-revision-row small {
+  display: block;
+  color: #718096;
+}
+
+[data-theme="dark"] .rag-quick-panel,
+[data-theme="dark"] .rag-availability-panel {
+  background: #172234;
+  border-color: #34445c;
+}
+
+.rag-knowledge-form {
+  padding: 1rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 10px;
+  background: var(--surface-muted, #f8fafc);
+}
+
+.rag-import-panel,
+.rag-price-panel {
+  padding: 1rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 12px;
+  background: var(--surface-muted, #f8fafc);
+}
+
+.rag-import-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(320px, 1.25fr);
+  align-items: center;
+  gap: .8rem 1rem;
+}
+
+.rag-import-title,
+.rag-price-heading {
+  color: var(--text-color, #111827);
+  font-weight: 700;
+}
+
+.rag-import-help,
+.rag-price-help,
+.rag-import-status {
+  margin-top: .25rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+.rag-import-actions {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+.rag-import-actions .form-control {
+  min-width: 0;
+}
+
+.rag-import-status {
+  grid-column: 1 / -1;
+  margin-top: -.15rem;
+}
+
+.rag-price-count,
+.rag-price-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  color: var(--primary-color, #2563eb);
+  background: color-mix(in srgb, var(--primary-color, #2563eb) 12%, transparent);
+  font-size: .78rem;
+  white-space: nowrap;
+}
+
+.rag-price-cards {
+  display: grid;
+  /* 卡片要紧凑：桌面宽屏可排 3 列，中等宽度排 2 列，避免出现一张超大卡片。 */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  align-items: start;
+  gap: .75rem;
+}
+
+.rag-price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  padding: .85rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-left: 4px solid var(--primary-color, #2563eb);
+  border-radius: 10px;
+  background: var(--card-bg, #fff);
+}
+
+.rag-price-card-head,
+.rag-price-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+}
+
+.rag-price-effective {
+  color: var(--text-secondary, #6b7280);
+  font-size: .76rem;
+}
+
+.rag-price-card .form-label {
+  margin-bottom: .25rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: .76rem;
+}
+
+.rag-price-title-input {
+  font-weight: 600;
+}
+
+.rag-price-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+}
+
+.rag-price-content-input {
+  min-height: 112px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.rag-hotel-price-card {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  min-width: 0;
+  padding: .75rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-top: 3px solid var(--primary-color, #2563eb);
+  border-radius: 10px;
+  background: var(--card-bg, #fff);
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, .05));
+}
+
+.rag-hotel-price-head,
+.rag-hotel-price-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+
+.rag-hotel-price-title-wrap {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: .4rem;
+}
+
+.rag-hotel-name-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+  font-weight: 700;
+  font-size: .9rem;
+}
+
+.rag-hotel-price-help {
+  color: var(--text-secondary, #6b7280);
+  font-size: .72rem;
+  line-height: 1.3;
+}
+
+.rag-price-rules {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.rag-price-rule {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  padding: .6rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  background: var(--surface-muted, #f8fafc);
+}
+
+.rag-price-rule-head,
+.rag-price-room-head,
+.rag-price-room-row {
+  display: grid;
+  grid-template-columns: minmax(110px, 1.15fr) minmax(78px, .75fr) minmax(90px, 1fr) 34px;
+  align-items: center;
+  gap: .35rem;
+}
+
+.rag-price-rule-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rag-price-rule-label {
+  color: var(--text-color, #111827);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.rag-price-rule-grid {
+  display: grid;
+  grid-template-columns: minmax(105px, 1.15fr) minmax(120px, 1fr) minmax(85px, .8fr);
+  gap: .45rem;
+}
+
+.rag-price-rule .form-label {
+  margin-bottom: .25rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: .74rem;
+}
+
+.rag-price-room-head {
+  padding: 0 .2rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: .68rem;
+}
+
+.rag-price-rooms {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.rag-price-room-row .form-control {
+  min-width: 0;
+  width: 100%;
+  padding: .25rem .4rem;
+  font-size: .78rem;
+}
+
+.rag-price-room-value {
+  text-align: right;
+}
+
+.rag-price-no-rooms {
+  padding: .5rem;
+  border: 1px dashed var(--border-color, #d1d5db);
+  border-radius: 7px;
+  color: var(--text-secondary, #6b7280);
+  font-size: .78rem;
+  text-align: center;
+}
+
+.rag-add-room-button {
+  align-self: flex-start;
+  padding: .25rem .45rem;
+  font-size: .74rem;
+}
+
+/* 卡片操作保持轻量，不让按钮把卡片高度和视觉重量撑大。 */
+.rag-hotel-price-card .rag-hotel-save,
+.rag-hotel-price-card .rag-hotel-price-foot .btn {
+  padding: .3rem .5rem;
+  font-size: .74rem;
+}
+
+.rag-hotel-price-card .rag-price-badge {
+  padding: .2rem .42rem;
+  font-size: .7rem;
+}
+
+/* 统一资料库卡片与仪表盘的主题层级。此前 components.css 的白色卡片规则
+   在暗色变量之后加载，导致暗色模式出现“白底白字”。 */
+[data-theme="dark"] .card,
+[data-theme="dark"] .rag-knowledge-form,
+[data-theme="dark"] .rag-import-panel,
+[data-theme="dark"] .rag-price-panel,
+[data-theme="dark"] .rag-hotel-price-card,
+[data-theme="dark"] .rag-price-rule {
+  border-color: var(--border-color, #334155);
+  background: var(--card-bg, #1e293b);
+  color: var(--text-color, #f1f5f9);
+}
+
+[data-theme="dark"] .rag-import-title,
+[data-theme="dark"] .rag-price-heading,
+[data-theme="dark"] .rag-price-rule-label,
+[data-theme="dark"] .rag-document-title,
+[data-theme="dark"] .rag-knowledge-card h5 {
+  color: var(--text-color, #f1f5f9);
+}
+
+[data-theme="dark"] .rag-price-help,
+[data-theme="dark"] .rag-import-help,
+[data-theme="dark"] .rag-import-status,
+[data-theme="dark"] .rag-hotel-price-help,
+[data-theme="dark"] .rag-price-rule .form-label,
+[data-theme="dark"] .rag-price-room-head,
+[data-theme="dark"] .rag-document-content,
+[data-theme="dark"] .rag-document-meta {
+  color: var(--text-secondary, #94a3b8);
+}
+
+/* 仪表盘的卡片沿用同一组深色表面，避免只切换文字颜色。 */
+html[data-theme="dark"] #dashboard-section .dashboard-status-card,
+html[data-theme="dark"] #dashboard-section .dashboard-metric-card,
+html[data-theme="dark"] #dashboard-section .dashboard-visual-card {
+  background: var(--card-bg, #1e293b) !important;
+  background-color: var(--card-bg, #1e293b) !important;
+  border-color: var(--border-color, #334155) !important;
+  color: var(--text-color, #f1f5f9) !important;
+}
+
+html[data-theme="dark"] #dashboard-section .dashboard-status-copy h3,
+html[data-theme="dark"] #dashboard-section .dashboard-status-count strong,
+html[data-theme="dark"] #dashboard-section .dashboard-metric-card strong,
+html[data-theme="dark"] #dashboard-section .dashboard-card-heading h4,
+html[data-theme="dark"] #dashboard-section .dashboard-reply-legend-item strong,
+html[data-theme="dark"] #dashboard-section .dashboard-recent-meta,
+html[data-theme="dark"] #dashboard-section .dashboard-recent-content {
+  color: var(--text-color, #f1f5f9) !important;
+}
+
+html[data-theme="dark"] #dashboard-section .dashboard-eyebrow,
+html[data-theme="dark"] #dashboard-section .dashboard-status-count span,
+html[data-theme="dark"] #dashboard-section .dashboard-metric-label,
+html[data-theme="dark"] #dashboard-section .dashboard-metric-card small,
+html[data-theme="dark"] #dashboard-section .dashboard-card-note,
+html[data-theme="dark"] #dashboard-section .dashboard-recent-meta time,
+html[data-theme="dark"] #dashboard-section .dashboard-recent-copy small,
+html[data-theme="dark"] #dashboard-section .dashboard-empty-state,
+html[data-theme="dark"] #dashboard-section .dashboard-status-card .text-muted {
+  color: var(--text-secondary, #94a3b8) !important;
+}
+
+@media (max-width: 768px) {
+  .rag-import-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .rag-import-status {
+    grid-column: auto;
+  }
+
+  .rag-import-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .rag-price-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rag-hotel-price-head,
+  .rag-hotel-price-foot {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .rag-hotel-price-title-wrap {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .rag-hotel-name-input {
+    max-width: none;
+  }
+
+  .rag-price-rule-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rag-price-room-head {
+    display: none;
+  }
+
+  .rag-price-room-row {
+    grid-template-columns: minmax(0, 1.15fr) 78px minmax(0, 1fr) 34px;
+  }
+}
+
+@media (max-width: 920px) {
+  .rag-price-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.rag-knowledge-list {
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.rag-empty-state {
+  padding: 1rem;
+  border: 1px dashed var(--border-color, #d1d5db);
+  border-radius: 10px;
+  color: var(--text-muted, #6b7280);
+  background: var(--surface-muted, #f8fafc);
+}
+
+.rag-document-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.rag-document-row:last-child {
+  border-bottom: 0;
+}
+
+.rag-document-main {
+  min-width: 0;
+}
+
+.rag-document-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-bottom: .35rem;
+  color: var(--text-muted, #6b7280);
+  font-size: .78rem;
+}
+
+.rag-document-type {
+  padding: .15rem .45rem;
+  border-radius: 999px;
+  color: var(--primary-color, #2563eb);
+  background: color-mix(in srgb, var(--primary-color, #2563eb) 12%, transparent);
+}
+
+.rag-document-title {
+  margin-bottom: .25rem;
+  color: var(--text-color, #111827);
+  font-weight: 600;
+}
+
+.rag-document-content {
+  color: var(--text-muted, #6b7280);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .rag-document-row {
+    gap: .5rem;
+  }
+}
+
+/* 酒店价格卡片的简洁编辑布局。价格是主内容，规则元数据默认收起。 */
+.rag-price-cards {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr));
+  gap: .9rem;
+}
+
+.rag-hotel-price-card {
+  gap: .75rem;
+  padding: .9rem;
+  border-top-width: 2px;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.rag-hotel-price-head {
+  align-items: flex-start;
+}
+
+.rag-hotel-price-title-wrap {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .4rem .55rem;
+  align-items: center;
+}
+
+.rag-hotel-name-input {
+  min-height: 36px;
+  padding: .35rem .55rem;
+  font-size: .95rem;
+}
+
+.rag-hotel-price-summary {
+  grid-column: 2;
+  color: var(--text-secondary, #64748b);
+  font-size: .75rem;
+  line-height: 1.2;
+}
+
+.rag-price-badge {
+  align-self: center;
+  padding: .28rem .48rem;
+  font-size: .7rem;
+}
+
+.rag-price-rules {
+  gap: .65rem;
+}
+
+.rag-price-rule {
+  gap: .55rem;
+  padding: .75rem;
+  border-radius: 10px;
+  background: var(--surface-muted, #f8fafc);
+}
+
+.rag-price-rule-head {
+  align-items: flex-start;
+}
+
+.rag-price-rule-label {
+  font-size: .82rem;
+}
+
+.rag-price-rule-meta {
+  margin-top: .18rem;
+  color: var(--text-secondary, #64748b);
+  font-size: .7rem;
+}
+
+.rag-price-room-head,
+.rag-price-room-row {
+  grid-template-columns: minmax(0, 1fr) minmax(78px, 88px) 30px;
+  gap: .45rem;
+}
+
+.rag-price-room-name-wrap {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: .35rem;
+}
+.rag-hotel-price-title-wrap,
+.rag-price-rule-head > div {
+  min-width: 0;
+}
+.rag-hotel-price-head > .rag-hotel-save {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.rag-price-rule-label {
+  overflow-wrap: anywhere;
+}
+
+.rag-price-room-name-wrap .rag-price-room-name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.rag-price-note-badge {
+  flex: 0 1 auto;
+  max-width: 42%;
+  overflow: hidden;
+  color: var(--text-secondary, #64748b);
+  font-size: .68rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rag-price-room-note.is-hidden {
+  display: none !important;
+}
+
+.rag-price-room-head.has-note,
+.rag-price-room-row.has-note {
+  grid-template-columns: minmax(0, 1fr) minmax(78px, 88px) minmax(90px, .85fr) 30px;
+}
+
+.rag-price-room-head {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .4rem .65rem;
+  padding: 0;
+}
+
+.rag-price-room-head-cell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(78px, 88px) 30px;
+  gap: .35rem;
+  padding: 0 .3rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: .68rem;
+}
+
+.rag-price-room-head-cell span:nth-child(2) {
+  text-align: right;
+}
+
+.rag-price-rooms {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .4rem .65rem;
+}
+
+/* 长房型保持同一网格，只缩小字号，避免单独占行破坏对齐。 */
+.rag-price-room-row.rag-price-room-long .rag-price-room-name {
+  font-size: .7rem;
+  letter-spacing: -.02em;
+}
+
+.rag-price-rule-with-notes .rag-price-rooms {
+  grid-template-columns: 1fr;
+}
+
+.rag-price-no-rooms,
+.rag-price-surcharge-copy {
+  grid-column: 1 / -1;
+}
+
+.rag-shared-price-rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .55rem;
+  padding: .55rem .65rem;
+  border: 1px solid color-mix(in srgb, var(--primary-color, #2563eb) 22%, var(--border-color, #e5e7eb));
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--primary-color, #2563eb) 5%, transparent);
+}
+
+.rag-shared-price-label {
+  flex: 0 0 auto;
+  padding: .22rem .4rem;
+  border-radius: 999px;
+  color: var(--primary-color, #2563eb);
+  background: color-mix(in srgb, var(--primary-color, #2563eb) 12%, transparent);
+  font-size: .68rem;
+  font-weight: 700;
+}
+
+.rag-shared-price-rule strong,
+.rag-shared-price-rule span:last-child {
+  display: block;
+}
+
+.rag-shared-price-rule strong {
+  color: var(--text-color, #111827);
+  font-size: .76rem;
+}
+
+.rag-shared-price-rule span:last-child {
+  margin-top: .12rem;
+  color: var(--text-secondary, #64748b);
+  font-size: .68rem;
+}
+
+.rag-price-room-row .form-control {
+  min-height: 34px;
+  padding: .3rem .5rem;
+  font-size: .76rem;
+}
+
+.rag-price-room-row .btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+}
+
+.rag-price-room-value {
+  font-weight: 600;
+}
+
+.rag-price-surcharge-copy {
+  padding: .55rem .65rem;
+  border-left: 3px solid var(--primary-color, #2563eb);
+  color: var(--text-secondary, #64748b);
+  background: color-mix(in srgb, var(--primary-color, #2563eb) 7%, transparent);
+  font-size: .78rem;
+  line-height: 1.5;
+}
+
+.rag-price-advanced {
+  border-top: 1px solid var(--border-color, #e5e7eb);
+  padding-top: .45rem;
+}
+
+.rag-price-advanced summary {
+  color: var(--text-secondary, #64748b);
+  cursor: pointer;
+  font-size: .75rem;
+  user-select: none;
+}
+
+.rag-price-advanced[open] summary {
+  margin-bottom: .55rem;
+  color: var(--text-color, #111827);
+  font-weight: 600;
+}
+
+.rag-price-advanced .rag-price-rule-grid {
+  margin-bottom: .55rem;
+}
+
+.rag-price-advanced .form-label {
+  font-size: .72rem;
+}
+
+.rag-hotel-price-foot {
+  padding-top: .1rem;
+}
+
+[data-theme="dark"] .rag-price-surcharge-copy {
+  background: color-mix(in srgb, var(--primary-color, #60a5fa) 14%, transparent);
+}
+
+[data-theme="dark"] .rag-shared-price-rule {
+  background: color-mix(in srgb, var(--primary-color, #60a5fa) 12%, transparent);
+}
+
+@media (max-width: 768px) {
+  .rag-price-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .rag-hotel-price-head {
+    align-items: stretch;
+  }
+
+  .rag-hotel-price-title-wrap {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .rag-price-room-head,
+  .rag-price-room-row,
+  .rag-price-room-head.has-note,
+  .rag-price-room-row.has-note {
+    grid-template-columns: minmax(0, 1fr) 82px 34px;
+  }
+
+  .rag-price-room-head {
+    grid-template-columns: 1fr;
+  }
+
+  .rag-price-room-head-cell {
+    grid-template-columns: minmax(0, 1fr) 82px 34px;
+  }
+
+  .rag-price-room-head-cell + .rag-price-room-head-cell {
+    display: none;
+  }
+
+  .rag-price-rooms,
+  .rag-price-rule-with-notes .rag-price-rooms {
+    grid-template-columns: 1fr;
+  }
+
+  .rag-price-room-row.has-note .rag-price-room-note {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .rag-price-room-row.has-note .btn {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}

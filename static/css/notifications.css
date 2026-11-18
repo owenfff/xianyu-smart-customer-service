@@ -1,0 +1,201 @@
+/* ================================
+   【通知渠道菜单】卡片样式
+   ================================ */
+.notification-help-card {
+  padding: 1.2rem 1.3rem;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(16, 185, 129, 0.11), transparent 34%),
+    linear-gradient(135deg, rgba(236, 253, 245, 0.96), rgba(255, 255, 255, 0.98));
+  box-shadow: 0 14px 30px -26px rgba(6, 95, 70, 0.36);
+}
+
+.notification-help-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.notification-help-eyebrow {
+  color: #047857;
+}
+
+.notification-help-badge {
+  border-color: rgba(16, 185, 129, 0.22);
+  color: #047857;
+}
+
+.notification-help-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.notification-help-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 0.78rem 0.82rem;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.notification-help-step > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #10b981;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.notification-help-step strong {
+  display: block;
+  margin-bottom: 0.18rem;
+  color: var(--text-color);
+  font-size: 0.86rem;
+}
+
+.notification-help-step span:not(:first-child) {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.notification-help-tip {
+  margin-top: 0.75rem;
+  color: #047857;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .notification-help-card {
+  border-color: rgba(52, 211, 153, 0.28);
+  background:
+    radial-gradient(circle at 100% 0, rgba(16, 185, 129, 0.2), transparent 34%),
+    linear-gradient(135deg, rgba(6, 78, 59, 0.36), rgba(15, 23, 42, 0.96));
+}
+
+[data-theme="dark"] .notification-help-eyebrow,
+[data-theme="dark"] .notification-help-badge,
+[data-theme="dark"] .notification-help-tip {
+  color: #6ee7b7;
+}
+
+[data-theme="dark"] .notification-help-badge {
+  border-color: rgba(52, 211, 153, 0.3);
+  background: rgba(16, 185, 129, 0.16);
+}
+
+[data-theme="dark"] .notification-help-step {
+  border-color: rgba(52, 211, 153, 0.22);
+  background: rgba(30, 41, 59, 0.68);
+}
+
+@media (max-width: 900px) {
+  .notification-help-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .notification-help-card {
+    padding: 1rem;
+  }
+
+  .notification-help-card-head {
+    flex-direction: column;
+  }
+}
+
+.channel-type-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  min-height: 180px; /* 设置最小高度，让卡片更紧凑 */
+}
+
+.channel-type-card .card-body {
+  padding: 1rem; /* 减少内边距 */
+}
+
+.channel-type-card .channel-icon {
+  transition: transform 0.3s ease;
+  margin-bottom: 0.75rem !important; /* 减少图标下方间距 */
+}
+
+.channel-type-card .channel-icon i {
+  font-size: 2.2rem !important; /* 减小图标大小 */
+}
+
+.channel-type-card .card-title {
+  font-size: 1.1rem; /* 减小标题字体 */
+  margin-bottom: 0.5rem;
+}
+
+.channel-type-card .card-text {
+  font-size: 0.85rem; /* 减小描述文字 */
+  margin-bottom: 0.75rem;
+}
+
+.channel-type-card .btn {
+  transition: all 0.3s ease;
+  font-size: 0.85rem; /* 减小按钮文字 */
+  padding: 0.375rem 0.75rem; /* 减小按钮内边距 */
+}
+
+.channel-type-card:hover {
+  transform: translateY(-3px); /* 减少悬停位移 */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  border-color: var(--bs-primary);
+}
+
+.channel-type-card:hover .channel-icon {
+  transform: scale(1.05); /* 减少悬停缩放 */
+}
+
+.channel-type-card:hover .btn {
+  transform: scale(1.02); /* 减少按钮悬停缩放 */
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .channel-type-card {
+    margin-bottom: 10px;
+    min-height: 160px; /* 移动端稍微减小高度 */
+  }
+
+  .channel-type-card .card-body {
+    padding: 0.75rem; /* 移动端减少内边距 */
+  }
+
+  .channel-type-card .channel-icon i {
+    font-size: 2rem !important; /* 移动端图标更小 */
+  }
+
+  .channel-type-card .card-title {
+    font-size: 1rem; /* 移动端标题更小 */
+  }
+
+  .channel-type-card .card-text {
+    font-size: 0.8rem; /* 移动端描述文字更小 */
+  }
+}
+
+/* 大屏幕优化 */
+@media (min-width: 1400px) {
+  .channel-type-card {
+    min-height: 200px; /* 大屏幕稍微增加高度 */
+  }
+}
